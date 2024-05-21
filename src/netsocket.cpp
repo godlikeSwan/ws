@@ -89,8 +89,15 @@ NetSocket::NetSocket (const char *host, const char *port) {
 #endif
         throw std::runtime_error("Unable to connect to server!");
     }
+}
 
-
+NetSocket::~NetSocket () {
+#ifdef _WIN32
+    ::closesocket(this->socket);
+#endif
+#ifdef __linux__
+    ::close(this->socket);
+#endif
 }
 
 void NetSocket::write (const char *data, int lenght) {
@@ -116,7 +123,8 @@ bool NetSocket::hasData () {
 #ifdef __linux__
         if (this->isBlocking || (errno != EAGAIN && errno != EWOULDBLOCK)) {
 #endif
-            throw std::runtime_error("recv failed");
+            std::string s(strerror(errno));
+            throw std::runtime_error("recv failed: " + s);
         }
     }
     return r == 1;
@@ -133,7 +141,8 @@ bool NetSocket::isClosed () {
 #ifdef __linux__
         if (this->isBlocking || (errno != EAGAIN && errno != EWOULDBLOCK)) {
 #endif
-            throw std::runtime_error("recv failed");
+            std::string s(strerror(errno));
+            throw std::runtime_error("recv failed: " + s);
         }
     }
     return r == 0;
@@ -142,7 +151,8 @@ bool NetSocket::isClosed () {
 int NetSocket::read (char *data, int maxlen, bool peek) {
     int r = recv(this->socket, data, maxlen, peek ? MSG_PEEK : 0);
     if (r == SOCKET_ERROR) {
-        throw std::runtime_error("recv failed");
+        std::string s(strerror(errno));
+        throw std::runtime_error("recv failed: " + s);
     }
     return r;
 }
@@ -161,19 +171,14 @@ void NetSocket::setNonBlocking () {
     this->isBlocking = false;
 }
 
-void NetSocket::close () {
+void NetSocket::shutdown () {
   #ifdef _WIN32
-    int r = shutdown(this->socket, SD_SEND);
+    int r = ::shutdown(this->socket, SD_SEND);
 #endif
 #ifdef __linux__
-    int r = shutdown(this->socket, SHUT_WR);
+    int r = ::shutdown(this->socket, SHUT_WR);
 #endif
-#ifdef _WIN32
-        closesocket(this->socket);
-#endif
-#ifdef __linux__
-        ::close(this->socket);
-#endif
+
     if (r == SOCKET_ERROR) {
         throw std::runtime_error("shutdown failed");
     }

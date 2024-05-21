@@ -35,12 +35,13 @@ public:
     static void uninit ();
 
     NetSocket (const char *host, const char *port);
+    ~NetSocket ();
     bool hasData ();
     bool isClosed ();
     void write (const char *data, int length);
     int read (char *data, int maxlen, bool peek);
     void setNonBlocking ();
-    void close ();
+    void shutdown ();
 };
 
 #endif
