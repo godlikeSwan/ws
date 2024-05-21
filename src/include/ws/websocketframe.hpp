@@ -13,7 +13,7 @@
 #define WSF_OPCODE_PONG 0xa
 // %xB-F are reserved for further control frames
 
-#include <winws/netsocket.hpp>
+#include "ws/netsocket.hpp"
 
 class WebSocketFrame {
 public:

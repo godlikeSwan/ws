@@ -1,4 +1,4 @@
-#include "winws/websocketmessage.hpp"
+#include "ws/websocketmessage.hpp"
 
 WebSocketMessage::WebSocketMessage (char *buf, unsigned long long length, bool isBinary) {
     this->isBinary = isBinary;

@@ -2,7 +2,7 @@
 #include <stdint.h>
 #include <exception>
 
-#include <winws/websocket.hpp>
+#include <ws/websocket.hpp>
 
 int main (int argc, char *argv[]) {
     try {

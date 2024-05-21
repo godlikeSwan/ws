@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <exception>
 
-#include <winws/netsocket.hpp>
+#include <ws/netsocket.hpp>
 
 int main (int argc, char *argv[]) {
     try {

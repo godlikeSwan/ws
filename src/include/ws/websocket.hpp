@@ -1,10 +1,10 @@
 #ifndef _websocket_hpp_
 #define _websocket_hpp_
 
-#include "winws/queue.hpp"
-#include "winws/netsocket.hpp"
-#include "winws/websocketframe.hpp"
-#include "winws/websocketmessage.hpp"
+#include "ws/queue.hpp"
+#include "ws/netsocket.hpp"
+#include "ws/websocketframe.hpp"
+#include "ws/websocketmessage.hpp"
 
 #define BUFFER_SIZE 4096
 

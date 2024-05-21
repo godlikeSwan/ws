@@ -1,6 +1,6 @@
 #include <stdexcept>
 
-#include "winws/netsocket.hpp"
+#include "ws/netsocket.hpp"
 
 #include <string.h>
 

@@ -1,7 +1,7 @@
-#include "winws/websocketframe.hpp"
+#include "ws/websocketframe.hpp"
+#include "ws/netsocket.hpp"
 
 #include <stdexcept>
-#include <winws/netsocket.hpp>
 
 WebSocketFrame::WebSocketFrame () {}
 // WebSocketFrame::~WebSocketFrame () {

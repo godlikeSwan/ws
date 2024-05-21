@@ -2,11 +2,11 @@
 #include <stdlib.h>
 #include <stdexcept>
 
-#include "winws/netsocket.hpp"
-#include "winws/websocketframe.hpp"
-#include "winws/websocketmessage.hpp"
+#include "ws/netsocket.hpp"
+#include "ws/websocketframe.hpp"
+#include "ws/websocketmessage.hpp"
 
-#include "winws/websocket.hpp"
+#include "ws/websocket.hpp"
 
 void WebSocket::init () {
     NetSocket::init();
