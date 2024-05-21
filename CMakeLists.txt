@@ -12,7 +12,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG "${CMAKE_SOURCE_DIR}/bin")
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_DEBUG "${CMAKE_SOURCE_DIR}/lib")
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_DEBUG  "${CMAKE_SOURCE_DIR}/lib")
 
-set(src_dir "${CMAKE_SOURCE_DIR}/src")
+set(src_dir "${CMAKE_CURRENT_SOURCE_DIR}/src")
 
 set(src
     netsocket.cpp
@@ -25,10 +25,10 @@ list(TRANSFORM src PREPEND "${src_dir}/")
 # add_executable(g WIN32 "${src}")
 add_library(ws "${src}")
 
-add_executable(netsocket_example "${CMAKE_SOURCE_DIR}/examples/netsocket_example.cpp")
-add_executable(websocket_example "${CMAKE_SOURCE_DIR}/examples/websocket_example.cpp")
+add_executable(netsocket_example "${CMAKE_CURRENT_SOURCE_DIR}/examples/netsocket_example.cpp")
+add_executable(websocket_example "${CMAKE_CURRENT_SOURCE_DIR}/examples/websocket_example.cpp")
 
-add_executable(queue_test "${CMAKE_SOURCE_DIR}/test/queue_test.cpp")
+add_executable(queue_test "${CMAKE_CURRENT_SOURCE_DIR}/test/queue_test.cpp")
 
 # for static linking
 
@@ -45,14 +45,14 @@ if(WIN32)
   target_link_libraries(ws Ws2_32.lib)
 endif()
 
-target_include_directories(ws PUBLIC "${CMAKE_SOURCE_DIR}/src/include/")
+target_include_directories(ws PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/src/include/")
 
-target_include_directories(netsocket_example PUBLIC "${CMAKE_SOURCE_DIR}/src/include/")
-target_include_directories(websocket_example PUBLIC "${CMAKE_SOURCE_DIR}/src/include/")
-target_include_directories(queue_test PUBLIC "${CMAKE_SOURCE_DIR}/src/include/")
+target_include_directories(netsocket_example PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/src/include/")
+target_include_directories(websocket_example PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/src/include/")
+target_include_directories(queue_test PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/src/include/")
 target_link_libraries(netsocket_example ws)
 target_link_libraries(websocket_example ws)
 
-# include_directories("${CMAKE_SOURCE_DIR}/src/include/")
+# include_directories("${CMAKE_CURRENT_SOURCE_DIR}/src/include/")
 
-# set_target_properties(ws PROPERTIES RUNTIME_OUTPUT_DIRECTORY_DEBUG "${CMAKE_SOURCE_DIR}/bin")
+# set_target_properties(ws PROPERTIES RUNTIME_OUTPUT_DIRECTORY_DEBUG "${CMAKE_CURRENT_SOURCE_DIR}/bin")
